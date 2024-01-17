@@ -7,12 +7,14 @@ function DefaultLayout() {
         <>
             <nav className={"flex justify-between bg-sky-900 text-white"}>
                 <div>
-                    <Icon path={mdiMenu} size={2}  />
+                    <button>
+                        <Icon path={mdiMenu} size={2}  />
+                    </button>
                 </div>
                 <div className={"flex items-center ml-2"}>
-                    <h1>Hablas</h1>
+                    <h1 className={"text-5xl"}>Hablas</h1>
                     <span>
-                        <Icon path={mdiForum} size={1} />
+                        <Icon path={mdiForum} size={2} />
                     </span>
                 </div>
                 <div className={" flex items-center mr-2"}>
