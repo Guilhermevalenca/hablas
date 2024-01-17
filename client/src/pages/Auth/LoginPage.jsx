@@ -1,10 +1,18 @@
 import Icon from '@mdi/react';
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import axios from "axios";
-
+import Swal from 'sweetalert2';
+import { useNavigate} from "react-router-dom";
 
 function LoginPage() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(localStorage.getItem('token')) {
+            navigate('/profile');
+        }
+    }, []);
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -28,7 +36,25 @@ function LoginPage() {
     function submit(e) {
         e.preventDefault();
         axios.post('api/login', formData)
-            .then(response => console.log(response.data))
+            .then(response => {
+                if(response.data.success) {
+
+                    localStorage.setItem('token', response.data.token);
+                    axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+                    axios.defaults.withCredentials = true;
+
+                    document.dispatchEvent(new Event('isLogged'));
+
+                    Swal.fire({
+                        title: 'Autenticado com sucesso!'
+                    })
+                        .then(v => {
+                            if(v.isConfirmed) {
+                                navigate('/');
+                            }
+                        })
+                }
+            })
             .catch(error => console.log(error));
     }
     return (
@@ -62,11 +88,11 @@ function LoginPage() {
                                     <ChangeVisiblePassword/>
                                 </span>
                             </div>
+                            <button type={"button"} className={"underline text-blue-400"} onClick={() => navigate('/register')}>Criar conta</button>
                         </div>
                     </div>
-
                 </div>
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="mt-3 flex items-center justify-end gap-x-6">
                     <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                         Cancelar
                     </button>

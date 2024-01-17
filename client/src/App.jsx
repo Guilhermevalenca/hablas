@@ -6,6 +6,7 @@ import socket from './plugins/socket.js';
 import HomePage from "./pages/HomePage.jsx";
 import LoginPage from './pages/Auth/LoginPage.jsx';
 import RegisterPage from './pages/Auth/RegisterPage.jsx';
+import ProfilePage from './pages/User/ProfilePage.jsx';
 function App() {
     socket.connect();
     return (
@@ -16,6 +17,7 @@ function App() {
                         <Route index element={<HomePage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/profile" element={ <ProfilePage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

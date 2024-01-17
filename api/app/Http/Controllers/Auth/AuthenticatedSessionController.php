@@ -17,9 +17,12 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+//        $request->session()->regenerate();
 
-        return response()->noContent();
+        return response([
+            'success' => true,
+            'token' => auth()->user()->createToken('token')->plainTextToken
+        ], 200);
     }
 
     /**
@@ -29,10 +32,7 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return response()->noContent();
+        auth()->user()->currentAccessToken()->delete();
+        return response(['success' => true]);
     }
 }
