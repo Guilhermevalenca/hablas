@@ -1,7 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/major-mono-display');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
     background-color: #EEE8E8;
+}
+.hablas {
+    font-family: 'Major Mono Display', sans-serif;
 }

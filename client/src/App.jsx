@@ -1,4 +1,5 @@
 import './assets/app.css';
+import './plugins/axios.js';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import socket from './plugins/socket.js';
