@@ -18,6 +18,7 @@ function App() {
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/profile" element={ <ProfilePage />} />
+                        <Route path="/chat" element={} />
                     </Route>
                 </Routes>
             </BrowserRouter>
