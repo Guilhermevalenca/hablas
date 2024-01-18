@@ -19,3 +19,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 require __DIR__.'/auth.php';
+
+Route::prefix('post')
+    ->controller(\App\Http\Controllers\PostsController::class)
+    ->whereNumber('id')
+    ->group(function(){
+        Route::post('','store');
+    });
