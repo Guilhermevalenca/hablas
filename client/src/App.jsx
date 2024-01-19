@@ -9,6 +9,7 @@ import RegisterPage from './pages/Auth/RegisterPage.jsx';
 import ProfilePage from './pages/User/ProfilePage.jsx';
 import AllChats from './pages/Chat/AllChats.jsx';
 import CreateChat from "./pages/Chat/CreateChat.jsx";
+
 function App() {
     socket.connect();
     return (

@@ -94,14 +94,14 @@ function RegisterPage() {
                     </InputFormText>
 
                     <InputFormPassword label={'Senha'} changeInput={handlerInput} name={"password"}
-                                       placeholder={"Digite sua senha"}>
+                                       placeholder={"Digite sua senha"} isVisiblePassOpen={true}>
                         <div className={messagesErrors.password ? 'text-red-600' : ''}>
                             {messagesErrors.password}
                         </div>
                     </InputFormPassword>
 
                     <InputFormPassword label={'Confirme sua senha'} changeInput={verifyPassword}
-                                       placeholder={"Digite sua senha"}>
+                                       placeholder={"Digite sua senha"} isVisiblePassOpen={true}>
                         {confirmPassword.message ? <div
                             className={confirmPassword.status ? 'text-green-600' : 'text-red-600'}>{confirmPassword.message}</div> : ''}
                     </InputFormPassword>

@@ -56,7 +56,7 @@ function LoginPage() {
                     <InputFormText label={"Email"} changeInput={handlerInput} name={"email"}
                                    placeholder={"Digite seu email"} typeInput={"email"}/>
 
-                    <InputFormPassword label={'Senha'} placeholder={"Digite sua senha"} name={"password"} changeInput={handlerInput}>
+                    <InputFormPassword label={'Senha'} placeholder={"Digite sua senha"} name={"password"} changeInput={handlerInput} isVisiblePassOpen={true}>
                         <button type={"button"} className={"underline text-blue-400"}
                                 onClick={() => navigate('/register')}>Criar conta
                         </button>
