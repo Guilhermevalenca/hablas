@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreChatRequest;
 use App\Http\Requests\UpdateChatRequest;
 use App\Models\Chat;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
@@ -62,5 +64,11 @@ class ChatController extends Controller
     public function destroy(Chat $chat)
     {
         //
+    }
+
+    public function searchPerson(Request $request)
+    {
+        $result = User::where('name', 'LIKE', '%' . $request->input('name') . '%')->get();
+        return response($result, 200);
     }
 }

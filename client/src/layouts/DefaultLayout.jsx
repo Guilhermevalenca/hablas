@@ -1,5 +1,5 @@
 import Icon from "@mdi/react";
-import {mdiAccount, mdiForum, mdiMenu} from "@mdi/js";
+import {mdiAccount, mdiForum, mdiMenu, mdiChat} from "@mdi/js";
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import {useState} from 'react';
 
@@ -33,6 +33,11 @@ function DefaultLayout() {
             <main>
                 <Outlet/>
             </main>
+            <footer>
+                <Link to={"/chat"}>
+                    <Icon path={mdiChat} size={3} className={"absolute bottom-5 right-0 text-sky-900"}/>
+                </Link>
+            </footer>
         </>
     );
 }

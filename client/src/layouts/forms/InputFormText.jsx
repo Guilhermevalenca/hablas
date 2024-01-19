@@ -1,6 +1,6 @@
-function InputFormText({label, typeInput, name, placeholder, changeInput, children}) {
+function InputFormText({label, typeInput, name, placeholder, changeInput, children, className}) {
     return (
-        <>
+        <div className={className}>
             <div className={"mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"}>
                 <div className={"sm:col-span-4"}>
                     <label className="text-center block text-2xl leading-6 text-gray-900">
@@ -15,7 +15,7 @@ function InputFormText({label, typeInput, name, placeholder, changeInput, childr
                     {children}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
