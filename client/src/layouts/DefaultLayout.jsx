@@ -1,7 +1,8 @@
 import Icon from "@mdi/react";
 import {mdiAccount, mdiForum, mdiMenu, mdiChat} from "@mdi/js";
-import {Link, Outlet, useNavigate} from "react-router-dom";
-import {useState} from 'react';
+import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
+import {useEffect, useState} from 'react';
+import Swal from "sweetalert2";
 
 function DefaultLayout() {
     const [isLogged, setIsLogged] = useState(localStorage.getItem('token') ? true : false);
@@ -9,6 +10,10 @@ function DefaultLayout() {
         setIsLogged(localStorage.getItem('token') ? true : false);
     });
     const navigate = useNavigate();
+    const location = useLocation();
+    useEffect(() => {
+        Swal.close();
+    }, [location])
     return (
         <>
             <nav className={"flex justify-between bg-sky-900 text-white"}>

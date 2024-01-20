@@ -4,6 +4,7 @@ import InputFormPassword from "../../layouts/forms/InputFormPassword.jsx";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {ButtonCancel, ButtonSuccess} from "../../layouts/buttons/Buttons.jsx";
 
 
 function RegisterPage() {
@@ -108,15 +109,12 @@ function RegisterPage() {
 
                 </div>
                 <div className="mt-3 flex items-center justify-end gap-x-6">
-                    <button onClick={() => navigate('/login')} type="button" className="text-sm font-semibold leading-6 text-gray-900">
+                    <ButtonCancel onClick={() => navigate('/login')} type="button" className="text-sm font-semibold leading-6 text-gray-900">
                         Cancelar
-                    </button>
-                    <button
-                        type="submit"
-                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2"
-                    >
+                    </ButtonCancel>
+                    <ButtonSuccess typeButton={"submit"} className={"mr-2"}>
                         Criar conta
-                    </button>
+                    </ButtonSuccess>
                 </div>
             </form>
         </>

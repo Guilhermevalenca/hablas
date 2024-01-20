@@ -2,6 +2,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
+import {ButtonDanger} from "../../layouts/buttons/Buttons.jsx";
 
 function ProfilePage() {
     const navigate = useNavigate();
@@ -11,9 +12,6 @@ function ProfilePage() {
     });
 
     useEffect(() => {
-        if(! localStorage.getItem('token')) {
-            navigate('/login');
-        }
         axios.get('api/user')
             .then(response => {
                 setUserData({
@@ -41,7 +39,7 @@ function ProfilePage() {
     }
     return (
         <>
-            <h1>Dados do usuário</h1>
+            <h1 className={"ml-2"}>Dados do usuário</h1>
             <div className={"border border-blue-600 m-2"}>
                 <ul className={"list-inside"}>
                     <strong>Nome:</strong>
@@ -52,7 +50,9 @@ function ProfilePage() {
                     <span>{userData.email ? userData.email : ' Carregando...'}</span>
                 </ul>
             </div>
-            <button className={"rounded-lg bg-red-600 p-1 text-white"} onClick={logout}>Desconectar</button>
+            <ButtonDanger className={"ml-2"} onClick={logout}>
+                Desconectar
+            </ButtonDanger>
         </>
     );
 }

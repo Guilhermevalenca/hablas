@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('chat')
     ->controller(ChatController::class)
+    ->middleware('auth:sanctum')
     ->group(function () {
 
-        Route::post('searchPerson', 'searchPerson');
+        Route::get('', 'index');
+        Route::post('', 'store');
+        Route::post('searchUsers', 'searchUsers');
 
     });

@@ -9,6 +9,8 @@ import RegisterPage from './pages/Auth/RegisterPage.jsx';
 import ProfilePage from './pages/User/ProfilePage.jsx';
 import AllChats from './pages/Chat/AllChats.jsx';
 import CreateChat from "./pages/Chat/CreateChat.jsx";
+import Chat from "./pages/Chat/Chat.jsx";
+import VerifyAuth from "./pages/Auth/VerifyAuth.jsx";
 
 function App() {
     socket.connect();
@@ -23,11 +25,15 @@ function App() {
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
 
-                        <Route path="/profile" element={ <ProfilePage />} />
+                        <Route element={ <VerifyAuth />}>
 
-                        <Route path="/chat" element={ <AllChats />} />
-                        <Route path="/createChat" element={ <CreateChat />} />
-                        {/*<Route path="/chat/:id" element={} />*/}
+                            <Route path="/profile" element={ <ProfilePage />} />
+
+                            <Route path="/chat" element={ <AllChats />} />
+                            <Route path="/createChat" element={ <CreateChat />} />
+                            <Route path="/chat/:id" element={ <Chat />} />
+
+                        </Route>
 
                     </Route>
                 </Routes>

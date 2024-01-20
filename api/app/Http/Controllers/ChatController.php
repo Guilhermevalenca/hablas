@@ -15,7 +15,12 @@ class ChatController extends Controller
      */
     public function index()
     {
-        //
+        $chats = Chat::with('user_id_1')
+            ->with('user_id_2')
+            ->where('user_id_1','=', auth()->id())
+            ->orWhere('user_id_2','=', auth()->id())
+            ->get();
+        return response($chats, 200);
     }
 
     /**
@@ -31,7 +36,12 @@ class ChatController extends Controller
      */
     public function store(StoreChatRequest $request)
     {
-        //
+        $validation = $request->validated();
+        $chat = Chat::create([
+            'user_id_1' => auth()->id(),
+            'user_id_2' => $validation['user_id']
+        ]);
+        return response(['success' => true, 'chat_id' => $chat->id], 200);
     }
 
     /**
@@ -55,7 +65,7 @@ class ChatController extends Controller
      */
     public function update(UpdateChatRequest $request, Chat $chat)
     {
-        //
+
     }
 
     /**
@@ -66,7 +76,7 @@ class ChatController extends Controller
         //
     }
 
-    public function searchPerson(Request $request)
+    public function searchUsers(Request $request)
     {
         $result = User::where('name', 'LIKE', '%' . $request->input('name') . '%')->get();
         return response($result, 200);
