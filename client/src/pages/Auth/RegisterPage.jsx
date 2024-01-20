@@ -79,28 +79,28 @@ function RegisterPage() {
             <form onSubmit={submit}>
                 <div className={"space-y-12 ml-4 mr-4"}>
 
-                    <InputFormText label={"Nome"} changeInput={handlerInput} name={"name"}
+                    <InputFormText label={"Nome"} onChange={handlerInput} name={"name"}
                                    placeholder={"Digite seu nome"} typeInput={"text"}>
                         <div className={messagesErrors.name ? 'text-red-600' : ''}>
                             {messagesErrors.name}
                         </div>
                     </InputFormText>
 
-                    <InputFormText label={"Email"} changeInput={handlerInput} name={"email"}
+                    <InputFormText label={"Email"} onChange={handlerInput} name={"email"}
                                    placeholder={"Digite seu email"} typeInput={"email"}>
                         <div className={messagesErrors.email ? 'text-red-600' : ''}>
                             {messagesErrors.email}
                         </div>
                     </InputFormText>
 
-                    <InputFormPassword label={'Senha'} changeInput={handlerInput} name={"password"}
+                    <InputFormPassword label={'Senha'} onChange={handlerInput} name={"password"}
                                        placeholder={"Digite sua senha"} isVisiblePassOpen={true}>
                         <div className={messagesErrors.password ? 'text-red-600' : ''}>
                             {messagesErrors.password}
                         </div>
                     </InputFormPassword>
 
-                    <InputFormPassword label={'Confirme sua senha'} changeInput={verifyPassword}
+                    <InputFormPassword label={'Confirme sua senha'} onChange={verifyPassword}
                                        placeholder={"Digite sua senha"} isVisiblePassOpen={true}>
                         {confirmPassword.message ? <div
                             className={confirmPassword.status ? 'text-green-600' : 'text-red-600'}>{confirmPassword.message}</div> : ''}
@@ -113,7 +113,7 @@ function RegisterPage() {
                     </button>
                     <button
                         type="submit"
-                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2"
                     >
                         Criar conta
                     </button>

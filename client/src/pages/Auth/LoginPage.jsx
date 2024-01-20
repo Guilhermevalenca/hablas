@@ -53,10 +53,10 @@ function LoginPage() {
             <form onSubmit={submit}>
                 <div className={"space-y-12 ml-4 mr-4"}>
 
-                    <InputFormText label={"Email"} changeInput={handlerInput} name={"email"}
-                                   placeholder={"Digite seu email"} typeInput={"email"}/>
+                    <InputFormText label={"Email"} onChange={handlerInput} name={"email"}
+                                   placeholder={"Digite seu email"} typeInput={"email"} />
 
-                    <InputFormPassword label={'Senha'} placeholder={"Digite sua senha"} name={"password"} changeInput={handlerInput} isVisiblePassOpen={true}>
+                    <InputFormPassword label={'Senha'} placeholder={"Digite sua senha"} name={"password"} onChange={handlerInput} isVisiblePassOpen={true}>
                         <button type={"button"} className={"underline text-blue-400"}
                                 onClick={() => navigate('/register')}>Criar conta
                         </button>
@@ -69,7 +69,7 @@ function LoginPage() {
                     </button>
                     <button
                         type="submit"
-                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2"
                     >
                         Entrar
                     </button>
