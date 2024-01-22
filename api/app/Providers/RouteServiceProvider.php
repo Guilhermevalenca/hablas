@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group([
                     base_path('routes/api.php'),
-                    base_path('routes/api/ChatRoutes.php')
+                    base_path('routes/api/chatRoutes.php')
                 ]);
 
             Route::middleware('web')

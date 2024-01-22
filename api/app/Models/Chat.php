@@ -19,4 +19,8 @@ class Chat extends Model
     {
         return $this->hasMany(User::class, 'id', 'user_id_2');
     }
+    public function messages(): HasMany
+    {
+        return $this->hasMany(MessagesChats::class, 'chat_id', 'id');
+    }
 }

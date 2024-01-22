@@ -19,6 +19,7 @@ function ProfilePage() {
                     email: response.data.email
                 });
             });
+
     }, []);
 
     function logout() {

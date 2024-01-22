@@ -9,7 +9,9 @@ Route::prefix('chat')
     ->group(function () {
 
         Route::get('', 'index');
+        Route::get('{chat}', 'show');
         Route::post('', 'store');
         Route::post('searchUsers', 'searchUsers');
+        Route::post('sendMessage/{chat}', 'sendMessage');
 
     });

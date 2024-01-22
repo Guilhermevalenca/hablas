@@ -7,10 +7,17 @@ import RenderChat from "../../components/Chat/AllChats/RenderChat.jsx";
 
 function AllChats() {
     const [chats, setChats] = useState([]);
-    useEffect(() => {
+    function getChats() {
         axios.get('api/chat')
-            .then(response => setChats(response.data))
+            .then(response => {
+                console.log(response.data);
+                setChats(response.data);
+            })
             .catch(error => console.log(error));
+    }
+    useEffect(() => {
+        getChats();
+        // return getChats;
     }, []);
     return (
         <>
@@ -26,8 +33,8 @@ function AllChats() {
                     {chats.map(chat =>
                         <div key={chat.id} className={"p-1"}>
                             {
-                                chat.user_id_1[0].id === user.id ? <RenderChat user={chat.user_id_2[0]} /> :
-                                    chat.user_id_2[0].id === user.id ? <RenderChat user={chat.user_id_1[0]} /> : ''
+                                chat.user_id_1[0].id === user.id ? <RenderChat user={chat.user_id_2[0]} chat={chat.id} /> :
+                                    chat.user_id_2[0].id === user.id ? <RenderChat user={chat.user_id_1[0]} chat={chat.id} /> : ''
                             }
                         </div>
                     )}

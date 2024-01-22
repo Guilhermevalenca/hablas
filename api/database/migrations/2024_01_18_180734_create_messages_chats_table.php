@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages_chat', function (Blueprint $table) {
+        Schema::create('messages_chats', function (Blueprint $table) {
             $table->id();
             $table->longText('message');
             $table->foreignId('user_id')

@@ -21,5 +21,37 @@ class UserSeeder extends Seeder
             'password' => 'ipi123',
             'remember_token' => Str::random(10)
         ]);
+
+        User::factory()->create([
+            'name' => 'Guilherme Valença',
+            'email' => 'gui@gmail.com',
+            'email_verified_at' => now(),
+            'password' => 'ipi123',
+            'remember_token' => Str::random(10)
+        ]);
+
+        User::factory()->create([
+            'name' => 'Claudiane Rodrigues',
+            'email' => 'cra@gmail.com',
+            'email_verified_at' => now(),
+            'password' => 'ipi123',
+            'remember_token' => Str::random(10)
+        ]);
+
+        User::factory()->create([
+            'name' => 'Random User',
+            'email' => 'random@gmail.com',
+            'email_verified_at' => now(),
+            'password' => 'ipi123',
+            'remember_token' => Str::random(10)
+        ]);
+
+        User::factory()->create([
+            'name' => 'User Socket',
+            'email' => 'socket@gmail.com',
+            'email_verified_at' => now(),
+            'password' => 'ipi123',
+            'remember_token' => Str::random(10)
+        ]);
     }
 }

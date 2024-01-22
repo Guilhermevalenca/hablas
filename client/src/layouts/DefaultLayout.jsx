@@ -11,7 +11,13 @@ function DefaultLayout() {
     });
     const navigate = useNavigate();
     const location = useLocation();
+    const [showChatIcon, setShowChatIcon] = useState(true);
     useEffect(() => {
+        if(location.pathname.startsWith('/chat/')) {
+            setShowChatIcon(false)
+        } else {
+            setShowChatIcon(true);
+        }
         Swal.close();
     }, [location])
     return (
@@ -39,9 +45,11 @@ function DefaultLayout() {
                 <Outlet/>
             </main>
             <footer>
-                <Link to={"/chat"}>
-                    <Icon path={mdiChat} size={3} className={"absolute bottom-5 right-0 text-sky-900"}/>
-                </Link>
+                {showChatIcon ?
+                    <Link to={"/chat"}>
+                        <Icon path={mdiChat} size={3} className={"absolute bottom-5 right-0 text-sky-900"}/>
+                    </Link> : ''
+                }
             </footer>
         </>
     );

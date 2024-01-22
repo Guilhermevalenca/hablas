@@ -2,7 +2,7 @@ import {useState} from "react";
 import Icon from "@mdi/react";
 import {mdiEyeOffOutline, mdiEyeOutline} from "@mdi/js";
 
-function InputFormPassword({label, name, onChange, placeholder, className, isVisiblePassOpen, children}) {
+function InputFormPassword({label, name, onChange, placeholder, className, isVisiblePassOpen, children, value}) {
     const [visiblePassword, setVisiblePassword] = useState(false);
     function ChangeVisiblePassword() {
         if(isVisiblePassOpen) {
@@ -24,11 +24,11 @@ function InputFormPassword({label, name, onChange, placeholder, className, isVis
                     <label className="block text-xl leading-6 text-gray-900">
                         {label}
                     </label>
-                    <div className="flex rounded-md shadow-sm ring-1 mt-2">
+                    <div className="flex rounded-md shadow-sm ring-1 mt-2 border focus:border-black focus:shadow-black hover:border-black">
                         <input type={visiblePassword ? 'text' : "password"} name={name}
                                placeholder={placeholder}
-                               className="flex-1 py-1.5 pl-1 placeholder:text-gray-400 border focus:border-blue-600 focus:shadow-blue"
-                               onChange={onChange}
+                               className="flex-1 py-1.5 pl-1 placeholder:text-gray-400 focus:outline-none focus:shadow-none"
+                               onChange={onChange} value={value}
                         />
                         <ChangeVisiblePassword/>
 

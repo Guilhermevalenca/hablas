@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreChatRequest;
 use App\Http\Requests\UpdateChatRequest;
 use App\Models\Chat;
+use App\Models\MessagesChats;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,21 @@ class ChatController extends Controller
      */
     public function show(Chat $chat)
     {
-        //
+        $messages = $chat->messages()->get();
+        if($chat->user_id_2 === auth()->id()) {
+            $chat = $chat->with('user_id_1')
+                ->where('user_id_2', '=', auth()->id())
+                ->get();
+        } else {
+            $chat = $chat->with('user_id_2')
+                ->where('user_id_1', '=', auth()->id())
+                ->get();
+        }
+        return response([
+            'chat' => $chat,
+            'messages' => $messages
+        ], 200);
+
     }
 
     /**
@@ -80,5 +95,14 @@ class ChatController extends Controller
     {
         $result = User::where('name', 'LIKE', '%' . $request->input('name') . '%')->get();
         return response($result, 200);
+    }
+    public function sendMessage(Chat $chat, Request $request)
+    {
+        MessagesChats::create([
+            'message' => $request->input('message'),
+            'user_id' => auth()->id(),
+            'chat_id' => $chat->id
+        ]);
+        return response(['success' => true], 200);
     }
 }

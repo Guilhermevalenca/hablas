@@ -26,3 +26,4 @@ Route::prefix('post')
     ->group(function(){
         Route::post('','store');
     });
+

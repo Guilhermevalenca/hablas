@@ -1,12 +1,15 @@
-import {Link, Outlet, useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import {ButtonCancel, ButtonSuccess} from "../../layouts/buttons/Buttons.jsx";
+import {controller} from "../../plugins/axios.js";
+// import {controller} from "../../plugins/axios.js";
 
 function VerifyAuth() {
     const navigate = useNavigate();
+    
     useEffect(() => {
         axios.get('api/user')
             .then(response => {
@@ -35,11 +38,12 @@ function VerifyAuth() {
                         allowOutsideClick: false,
                         allowEscapeKey: false
                     });
-                    localStorage.removeItem('token');
-                    document.dispatchEvent(new Event('isLogged'));
 
                 }
             });
+        return () => {
+            //
+        }
     }, []);
 
     return (
@@ -48,5 +52,4 @@ function VerifyAuth() {
         </>
     );
 }
-
 export default VerifyAuth;
