@@ -3,6 +3,7 @@ import {useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import socket from "../../plugins/socket.js";
 
 function CreateChat() {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ function CreateChat() {
                 .then(response => setUsers(response.data));
         }
     }
-    function createChat(person_id) {
+    function createChat(user_id) {
         Swal.fire({
             title: 'Aguarde, estamos iniciando a conversa',
             showConfirmButton: false,
@@ -30,10 +31,11 @@ function CreateChat() {
             allowEscapeKey: false
         });
         axios.post('api/chat', {
-            user_id: person_id
+            user_id: user_id
         })
             .then(response => {
                 if(response.data.success) {
+                    socket.emit('chat:new_chat', user_id);
                     navigate(`/chat/${response.data.chat_id}`);
                 }
             })

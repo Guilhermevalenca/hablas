@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import user from '../../plugins/user.js';
 import RenderChat from "../../components/Chat/AllChats/RenderChat.jsx";
+import socket from "../../plugins/socket.js";
 
 function AllChats() {
     const [chats, setChats] = useState([]);
@@ -17,7 +18,11 @@ function AllChats() {
     }
     useEffect(() => {
         getChats();
-        // return getChats;
+        socket.on('chat:created_new_chat', user_id => {
+            if(user_id === user.id) {
+                getChats();
+            }
+        });
     }, []);
     return (
         <>

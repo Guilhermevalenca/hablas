@@ -8,6 +8,7 @@ use App\Models\Chat;
 use App\Models\MessagesChats;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PHPUnit\Runner\ErrorException;
 
 class ChatController extends Controller
 {
@@ -37,12 +38,16 @@ class ChatController extends Controller
      */
     public function store(StoreChatRequest $request)
     {
-        $validation = $request->validated();
-        $chat = Chat::create([
-            'user_id_1' => auth()->id(),
-            'user_id_2' => $validation['user_id']
-        ]);
-        return response(['success' => true, 'chat_id' => $chat->id], 200);
+        try {
+            $validation = $request->validated();
+            $chat = Chat::create([
+                'user_id_1' => auth()->id(),
+                'user_id_2' => $validation['user_id']
+            ]);
+            return response(['success' => true, 'chat_id' => $chat->id], 200);
+        } catch (ErrorException $e) {
+            return response($e, 302);
+        }
     }
 
     /**
@@ -93,7 +98,9 @@ class ChatController extends Controller
 
     public function searchUsers(Request $request)
     {
-        $result = User::where('name', 'LIKE', '%' . $request->input('name') . '%')->get();
+        $result = User::where('name', 'LIKE', '%' . $request->input('name') . '%')
+            ->where('id', '!=', auth()->id())
+            ->get();
         return response($result, 200);
     }
     public function sendMessage(Chat $chat, Request $request)

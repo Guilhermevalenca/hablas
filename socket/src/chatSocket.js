@@ -10,6 +10,9 @@ function chatSocket(io, socket) {
                 io.to(`chat/${chat}`).emit('chat:update_messages', response.data.messages);
             });
     });
+    socket.on('chat:new_chat', user_id => {
+       io.emit('chat:created_new_chat', user_id);
+    });
 
 }
 
