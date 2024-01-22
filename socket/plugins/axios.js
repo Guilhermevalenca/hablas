@@ -18,6 +18,11 @@ axios.post('api/login', {
         if(response.data.success) {
             axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
             console.log('Autenticação concluida');
+        } else {
+            console.log('Falha na autenticação, ligue a api e reinicie este servidor');
         }
-    });
+    })
+    .catch(() => {
+        console.log('Falha na autenticação, ligue a api e reinicie este servidor');
+    })
 
