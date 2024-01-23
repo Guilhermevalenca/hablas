@@ -7,7 +7,10 @@ import RenderChat from "../../components/Chat/AllChats/RenderChat.jsx";
 import socket from "../../plugins/socket.js";
 
 function AllChats() {
-    const [chats, setChats] = useState([]);
+    const [chats, setChats] = useState([{
+        user_id_1: [{id: null}],
+        user_id_2: [{id: null}]
+    }]);
     function getChats() {
         axios.get('api/chat')
             .then(response => {
@@ -35,8 +38,8 @@ function AllChats() {
             <div>
                 <div className={"border border-sky-900 m-4 p-2"}>
 
-                    {chats.map(chat =>
-                        <div key={chat.id} className={"p-1"}>
+                    {chats.map( (chat, index) =>
+                        <div key={index} className={"p-1"}>
                             {
                                 chat.user_id_1[0].id === user.id ? <RenderChat user={chat.user_id_2[0]} chat={chat.id} /> :
                                     chat.user_id_2[0].id === user.id ? <RenderChat user={chat.user_id_1[0]} chat={chat.id} /> : ''
