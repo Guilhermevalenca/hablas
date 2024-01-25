@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import user from "../../plugins/user.js";
 import RenderMessage from "../../components/Chat/Chat/RenderMessage.jsx";
-import {InputFormText} from "../../layouts/forms/InputForms.jsx";
+import {InputFormTextarea} from "../../layouts/forms/InputForms.jsx";
 import Icon from "@mdi/react";
 import { mdiSend } from '@mdi/js';
 import socket from '../../plugins/socket.js';
@@ -17,6 +17,8 @@ function Chat() {
     });
     const [messages, setMessages] = useState([]);
     const [sendMessage, setSendMessage] = useState('');
+    const [rows, setRows] = useState(1);
+
     function getChat() {
         axios.get(`api/chat/${id}`)
             .then(response => {
@@ -34,6 +36,13 @@ function Chat() {
     useEffect(() => {
         contentRef.current.scrollTop = contentRef.current.scrollHeight;
     }, [messages]);
+
+    useEffect(() => {
+        const newlineCount = (sendMessage.match(/\n/g) || []).length;
+        if(newlineCount < 3) {
+            setRows(newlineCount + 1);
+        }
+    }, [sendMessage]);
 
     function handlerInput(e) {
         setSendMessage(e.target.value);
@@ -62,11 +71,12 @@ function Chat() {
             </div>
             <div className={"p-1 absolute bottom-0 w-full"}>
                 <form onSubmit={submit}>
-                    <InputFormText
+                    <InputFormTextarea
                         placeholder={"Digite sua mensagem..."}
                         onChange={handlerInput}
                         type={"text"}
                         value={sendMessage}
+                        rows={rows}
                         childrenInInput={
                             <button type={"submit"} className={"bg-white"}>
                                 <Icon path={mdiSend} size={1.5} />

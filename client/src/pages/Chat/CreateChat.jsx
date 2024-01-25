@@ -8,9 +8,12 @@ import socket from "../../plugins/socket.js";
 function CreateChat() {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
+    
     function handlerInput(e) {
         const value = e.target.value;
-        if(value.length === 1 || value.length % 3 === 0) {
+        if(value === '' || value === null) {
+            setUsers([]);
+        } else if(value.length === 1 || value.length % 3 === 0) {
             axios.post('api/chat/searchUsers', {
                 name: e.target.value
             })

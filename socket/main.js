@@ -12,6 +12,7 @@ io.on("connection", (socket) => {
 
     console.log(socket.id);
     chatSocket(io, socket);
+
 });
 
 io.listen(3000);
